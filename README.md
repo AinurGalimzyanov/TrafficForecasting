@@ -2,51 +2,14 @@
 
 Итоговый проект по курсу «Анализ временных рядов».
 
-## Описание
+Задача — прогнозировать почасовой трафик на одном перекрёстке на сутки вперёд.
+Данные почасовые, с сильной суточной и недельной сезонностью, поэтому на них
+удобно сравнить статистику, ML и нейросети между собой.
 
-В проекте решается задача краткосрочного прогнозирования количества транспортных
-средств, проезжающих через один перекрёсток. Данные представлены в почасовой
-детализации и обладают выраженной суточной и недельной сезонностью, что делает
-ряд удобным для сравнения классических статистических методов, ML-моделей на
-лаговых признаках и современных нейросетевых архитектур.
+Полный разбор — данные, EDA, сравнение всех моделей, аномалии и выводы — лежит
+в [`report.md`](report.md).
 
 ## Данные
 
-- Источник: [Traffic Prediction dataset](https://github.com/MVRonkin/TimeSeriesCourse/tree/main/OLD%20Versions/2026/datasets/Traffic%20Prediction)
-- Файл: `data/traffic.csv`
-- Столбцы: `DateTime`, `Junction`, `Vehicles`, `ID`
-- В работе используется только перекрёсток `Junction == 1`
-
-## Структура репозитория
-
-```
-.
-├── data/                # Исходные и очищенные данные
-│   └── traffic.csv
-├── notebooks/           # Исследовательский код
-│   └── analysis.ipynb
-├── src/                 # Финальный пайплайн прогнозирования
-│   └── pipeline.py
-├── results/             # Результаты работы пайплайна
-├── requirements.txt     # Зависимости
-├── report.md            # Итоговый отчёт
-└── README.md
-```
-
-## Запуск
-
-```bash
-python -m venv .venv
-source .venv/bin/activate       # для Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-jupyter notebook notebooks/analysis.ipynb
-```
-
-## План исследования
-
-1. EDA и постановка задачи
-2. Статистические модели: SeasonalNaive (24, 168), HistoricAverage, AutoARIMA, AutoETS, AutoTheta
-3. ML-модели с feature engineering: LightGBM, XGBoost, Ridge
-4. DL-модели: NHITS, LSTM, TFT
-5. Выявление аномалий: IQR на остатках, Isolation Forest, пороговая модель на ошибках
-6. Финальный пайплайн прогнозирования и отчёт
+Датасет [Traffic Prediction](https://github.com/MVRonkin/TimeSeriesCourse/tree/main/OLD%20Versions/2026/datasets/Traffic%20Prediction)
+из репозитория курса, файл `data/traffic.csv`. Беру перекрёсток `Junction == 1`.
